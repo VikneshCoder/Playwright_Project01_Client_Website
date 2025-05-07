@@ -20,7 +20,7 @@ test('E2E Automation for Client Website', async ({ page }) => {
   const count = await cards.count();
 
   for (let i = 0; i < count; i++) {
-    const title = await cards.nth(i).locator("h5").textContent();
+    let title = await cards.nth(i).locator("h5").textContent();
     console.log(title);
     if (title.trim() === "ADIDAS ORIGINAL") {
       await cards.nth(i).locator("text=View").click(); // or just .locator("button") if there's only one
@@ -94,7 +94,7 @@ test('E2E Automation for Client Website', async ({ page }) => {
   // Navigate to the Orders page
   await page.locator(".btn.btn-custom[routerlink='/dashboard/myorders']").click();
   const rows = page.locator("tbody tr");
-  await page.locator("tbody").waitFor();
+  await page.locator("tbody").waitFor();  
 
   // verify the order ID in the Orders page
   for (let i = 0; i < await rows.count(); i++) {
